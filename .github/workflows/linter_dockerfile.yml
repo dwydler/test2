@@ -16,7 +16,7 @@ jobs:
       max-parallel: 1
       fail-fast: true
       matrix:
-        files: ["Dockerfile", "docker\\Dockerfile"]
+        files: ["Dockerfile", "docker/Dockerfile"]
         
     permissions:
       contents: read
