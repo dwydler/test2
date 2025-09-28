@@ -42,7 +42,7 @@ COPY /mediathekview/docker/main-window-selection.xml /etc/openbox/main-window-se
 
 
 # Define mountable directories.
-VOLUME ["/config"] \
+VOLUMEb ["/config"] \
     ["/output"]
 
 # Metadata.
