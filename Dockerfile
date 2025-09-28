@@ -39,7 +39,7 @@ RUN apt-get install -y \
 
 # Maximize only the main/initial window.
 COPY /mediathekview/docker/main-window-selection.xml /etc/openbox/main-window-selection.xml
-
+ 
 
 # Define mountable directories.
 VOLUMEb ["/config"] \
