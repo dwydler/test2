@@ -21,3 +21,4 @@ jobs:
         with:
           dockerfile: Dockerfile
           failure-threshold: error
+          recursive: true
