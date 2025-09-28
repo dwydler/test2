@@ -27,6 +27,6 @@ jobs:
         with:
           dockerfile: Dockerfile
           #dockerfile: ${{ matrix.files }}
-          failure-threshold: error
+          #failure-threshold: error
           recursive: true
           ignore: "DL3008,DL3015"
