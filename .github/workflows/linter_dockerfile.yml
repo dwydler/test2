@@ -9,7 +9,7 @@ on:
 
 jobs:
   validate-json-schema:
-    name: Validate JSON Schema
+    name: Main
     runs-on: ubuntu-latest
     
     steps:
