@@ -9,7 +9,7 @@ on:
 
 jobs:
   validate-dockerfile-schema:
-    name: Haskell Dockerfile Linter
+    name: Haskell Linter
     runs-on: ubuntu-latest
 
     strategy:
