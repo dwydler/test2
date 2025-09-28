@@ -35,7 +35,9 @@ RUN apt-get install -y \
     vlc \
     flvstreamer \
     ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+ 
 
 # Maximize only the main/initial window.
 COPY /mediathekview/docker/main-window-selection.xml /etc/openbox/main-window-selection.xml
