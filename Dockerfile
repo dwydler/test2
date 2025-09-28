@@ -15,21 +15,23 @@ ENV USER_ID=0 \
     S6_KILL_GRACETIME=8000
 
 # Refresh apt cache
-RUN apt-get update \
-    && apt-get upgrade -y
+# RUN apt-get update \
+#    && apt-get upgrade -y
 
 # Locale needed for storing files with umlaut
-RUN apt-get install -y apt-utils locales \
+RUN apt-get update && apt-get install -y apt-utils locales \
     && echo en_US.UTF-8 UTF-8 > /etc/locale.gen \
-    && locale-gen
-
+    && locale-gen \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+ 
 #
 ENV LC_ALL=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LANG=en_US.UTF-8
 
 # Runtime deps
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     wget \
 	procps \
     vlc \
