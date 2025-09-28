@@ -9,7 +9,7 @@ on:
 
 jobs:
   validate-dockerfile-schema:
-    name: Lint Dockerfile files
+    name: Haskell Dockerfile Linter
     runs-on: ubuntu-latest
 
     permissions:
