@@ -19,7 +19,7 @@ ENV USER_ID=0 \
     S6_KILL_GRACETIME=8000
 
 # Locale needed for storing files with umlaut
-RUN apt-get update && apt-get install -y apt-utils locales \
+RUN apt-get update && apt-get install -y apt-utils2 locales \
     && echo en_US.UTF-8 UTF-8 > /etc/locale.gen \
     && locale-gen \
  && apt-get clean \
