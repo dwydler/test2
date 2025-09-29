@@ -70,3 +70,9 @@ jobs:
 
           # Run the container in detached mode
           docker run -d moby/buildkit:buildx-stable-1
+
+           # Test the /live endpoint
+          echo "Testing /live endpoint"
+          wget -q -O - http://127.0.0.1:5800 | grep live
+
+          docker ps
