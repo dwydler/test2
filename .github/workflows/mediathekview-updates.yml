@@ -1,0 +1,93 @@
+name: Mediathekview Updates
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 1'
+
+# Global environment variable accessible to all jobs and steps
+env:
+  MV_VERSION_FILE: 'mediathekview/docker/requirements.txt'
+
+jobs:
+  tag-new-versions:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+  
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+    
+    - name: Read the latest tag from repository Mediathekview
+      id: mediathekview_remote
+      uses: oprypin/find-latest-tag@dd2729fe78b0bb55523ae2b2a310c6773a652bd1 # v1.1.2
+      with:
+        # The repository to scan.
+        repository: mediathekview/MediathekView
+        # We know that all relevant tags have a GitHub release for them.
+        releases-only: false  
+    
+        
+    - name: Read the locally stored version number
+      id: mediathekview_local
+      run: echo "version=$(cat $MV_VERSION_FILE)" >> $GITHUB_OUTPUT
+
+    
+    outputs:
+      mv_local_version: ${{ steps.mediathekview_local.outputs.version }}
+      mv_original_version: ${{ steps.mediathekview_remote.outputs.tag }}
+
+
+  update-version:
+    needs: tag-new-versions
+    if: ${{ needs.tag-new-versions.outputs.mv_local_version != needs.tag-new-versions.outputs.mv_original_version }}
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      
+    steps:
+    - name: Set globals
+      id: globals
+      shell: bash
+      run: |
+        echo "NOW=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
+        echo "MV_VERSION_FILE=$MV_VERSION_FILE" >> $GITHUB_OUTPUT
+
+
+    - name: Checkout this repository
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+
+    - name: Generate app token
+      uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42 # v2.1.4
+      id: generate-token
+      with:
+        app-id: ${{ secrets.APP_ID }}
+        private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+
+    - name: Write new version number to file
+      run: echo "${{ needs.tag-new-versions.outputs.mv_original_version }}"  > $MV_VERSION_FILE
+    
+
+    - name: Create Pull Request for the change
+      id: cpr
+      uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+      with:
+        token: ${{ steps.generate-token.outputs.token }}
+        commit-message: Bump mediathekview/MediathekView in ${{ steps.globals.outputs.MV_VERSION_FILE }}
+        signoff: false
+        branch: dependabot-mediathekview-${{ needs.tag-new-versions.outputs.mv_original_version }}
+        delete-branch: true
+        title: 'Bump mediathekview/MediathekView from ${{ needs.tag-new-versions.outputs.mv_local_version }} to ${{ needs.tag-new-versions.outputs.mv_original_version }} in ${{ steps.globals.outputs.MV_VERSION_FILE }}'
+        body: |
+            Bump mediathekview/MediathekView from ${{ needs.tag-new-versions.outputs.mv_local_version }} to ${{ needs.tag-new-versions.outputs.mv_original_version }}.
+        #    - Updated with *today's* date
+        labels: |
+          dependencies
+        draft: false
+        assignees: dwydler
