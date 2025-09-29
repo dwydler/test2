@@ -49,7 +49,7 @@ jobs:
 #        with:
 #          images: ${{ matrix.image }}
           
-      - name: Build and push
+      - name: Build image
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
         with:
           context: .
@@ -61,3 +61,8 @@ jobs:
 #          platforms: linux/amd64
 #          cache-from: type=local,src=/tmp/.buildx-cache
 #          cache-to: type=local,dest=/tmp/.buildx-cache
+
+      - name: Docker Image Testing
+        run: |
+          # List built images
+          docker images
