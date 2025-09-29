@@ -67,3 +67,6 @@ jobs:
         run: |
           # List built images
           docker images
+
+          # Run the container in detached mode
+          docker run --name moby/buildkit -d
