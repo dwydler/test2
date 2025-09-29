@@ -69,4 +69,4 @@ jobs:
           docker images
 
           # Run the container in detached mode
-          docker run --name moby/buildkit -d
+          docker run -d moby/buildkit:buildx-stable-1
