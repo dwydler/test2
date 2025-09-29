@@ -16,11 +16,11 @@ jobs:
     name: Docker Build Image
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        include:
-          - image: wydler/mediathekview
-            dockerfile: ./mediathekview/docker/Dockerfile
+#    strategy:
+#      matrix:
+#        include:
+#          - image: wydler/mediathekview
+#            dockerfile: ./mediathekview/docker/Dockerfile
     
     steps:
       - name: Checkout
