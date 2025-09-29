@@ -69,7 +69,8 @@ jobs:
           docker images
 
           # Run the container in detached mode
-          docker run -d moby/buildkit:buildx-stable-1
+          docker run -d moby/buildkit:buildx-stable-1 \
+            -p 5800:5800
 
            # Test the /live endpoint
           echo "Testing /live endpoint"
