@@ -11,15 +11,12 @@ COPY /mediathekview/docker/requirements.txt ./
 ENV APP_NAME="Mediathekview" \
     #APP_VERSION=14.1.0 \
     DOCKER_IMAGE_VERSION=1.0
-
+    
+#
 ENV USER_ID=0 \
     GROUP_ID=0 \
     TERM=xterm \
     S6_KILL_GRACETIME=8000
-
-# Refresh apt cache
-# RUN apt-get update \
-#    && apt-get upgrade -y
 
 # Locale needed for storing files with umlaut
 RUN apt-get update && apt-get install -y apt-utils locales \
@@ -27,7 +24,7 @@ RUN apt-get update && apt-get install -y apt-utils locales \
     && locale-gen \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
- 
+
 #
 ENV LC_ALL=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
@@ -42,11 +39,10 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
- 
 
 # Maximize only the main/initial window.
 COPY /mediathekview/docker/main-window-selection.xml /etc/openbox/main-window-selection.xml
- 
+
 
 # Define mountable directories.
 VOLUME ["/config"] \
