@@ -68,16 +68,17 @@ jobs:
           # List built images
           docker images
 
-          # Run the container in detached mode
-          #docker run -d moby/buildkit:buildx-stable-1 \
-          #  -p 5800:5800
-
-           # Test the /live endpoint
-          # echo "Testing /live endpoint"
-          # wget -q -O - http://127.0.0.1:5800 | grep live
-
           docker stop $(docker ps -a -q)
           docker rm $(docker ps -a -q)
           docker ps
 
-          # docker ps -aqf "name=^buildx_buildkit_builder"
+          # Run the container in detached mode
+          docker run -d moby/buildkit:buildx-stable-1 \
+            -p 5800:5800
+
+          # Test the /live endpoint
+          ping 127.0.0.1 -c 60
+          echo "Testing /live endpoint"
+          wget -q -O - http://127.0.0.1:5800 | grep live
+
+          docker ps
