@@ -77,3 +77,5 @@ jobs:
           #wget -q -O - http://127.0.0.1:5800 | grep live
 
           docker ps
+
+          docker ps -aqf "name=^buildx_buildkit_builder"
