@@ -73,9 +73,10 @@ jobs:
           #  -p 5800:5800
 
            # Test the /live endpoint
-          #echo "Testing /live endpoint"
-          #wget -q -O - http://127.0.0.1:5800 | grep live
+          # echo "Testing /live endpoint"
+          # wget -q -O - http://127.0.0.1:5800 | grep live
 
+          docker rm $(docker ps -a -q)
           docker ps
 
-          docker ps -aqf "name=^buildx_buildkit_builder"
+          # docker ps -aqf "name=^buildx_buildkit_builder"
