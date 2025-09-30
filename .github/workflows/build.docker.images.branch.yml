@@ -76,6 +76,7 @@ jobs:
           # echo "Testing /live endpoint"
           # wget -q -O - http://127.0.0.1:5800 | grep live
 
+          docker stop $(docker ps -a -q)
           docker rm $(docker ps -a -q)
           docker ps
 
