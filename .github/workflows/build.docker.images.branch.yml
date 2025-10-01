@@ -77,6 +77,7 @@ jobs:
             -p 5800:5800
 
           # Test the /live endpoint
+          docker ps
           ping 127.0.0.1 -c 120
           echo "Testing /live endpoint"
           #wget -q -O - http://127.0.0.1:5800 | grep live
