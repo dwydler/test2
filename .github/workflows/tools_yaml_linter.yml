@@ -15,7 +15,7 @@ jobs:
 #      - name: Validate YAML file
 #        run: yamllint -c ./.yamllint .
 
-      - name: 🚀 Run yamllint
-        uses: frenck/action-yamllint@v1
+      - name: Frencks yamllint
+        uses: frenck/action-yamllint@v1.5.0
         with:
-          config: "./.yamllint"
+          config: "./custom/.yamllint"
