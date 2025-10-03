@@ -12,5 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Validate YAML file
-        run: yamllint -c ./.yamllint .
+#      - name: Validate YAML file
+#        run: yamllint -c ./.yamllint .
+
+      - name: 🚀 Run yamllint
+        uses: frenck/action-yamllint@v1
+        with:
+          config: "./.yamllint"
