@@ -6,3 +6,5 @@ ignore: |
 rules:
   empty-lines:
     level: warning
+line-length:
+    max: 92
