@@ -10,6 +10,6 @@ rules:
     level: warning
 
 ignore:
-  - ./github/
-  - ./data/webapp/.github/
-  - ./data/webapp/.github/workflows/
+  - "./github/"
+  - "./data/webapp/.github/"
+
