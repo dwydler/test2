@@ -1,6 +1,6 @@
 extends: default
 
-#yaml-files:
+yaml-files:
   - '*.yaml'
   - '*.yml'
 #  - '.yamllint'
@@ -10,6 +10,6 @@ rules:
     level: warning
 
 ignore:
-  - "./github/"
-  - "./data/webapp/.github/*"
+  - ./github/
+  - ./data/webapp/.github/
 
