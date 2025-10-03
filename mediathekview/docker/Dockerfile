@@ -2,7 +2,7 @@
 FROM jlesage/baseimage-gui:debian-12-v4.9.0
 
 #
-WORKDIRa /
+WORKDIR /
 
 # Kopiere Voraussetzungen
 COPY /mediathekview/docker/requirements.txt ./
