@@ -1,3 +1,4 @@
+---
 services:
   immich-server:
     image: ghcr.io/immich-app/immich-server:release
@@ -95,7 +96,7 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:release
     container_name: Immich-LEARNING
     hostname: ${IMMICH_ML_HOSTNAME}
-#    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     security_opt:
       # Prevent escalation of privileges after the container is started
       # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
