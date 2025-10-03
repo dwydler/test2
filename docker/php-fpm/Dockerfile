@@ -18,7 +18,7 @@ LABEL org.opencontainers.image.authors="Daniel Wydler"
 # Remove the package lists
 #RUN rm -r /var/lib/apt/lists/*
 
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     net-tools \
 	host \
     mtr \
