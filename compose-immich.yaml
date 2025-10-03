@@ -47,7 +47,7 @@ services:
     cap_drop:
       # Prevent access to raw network traffic
       # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
-      - NET_RAW    
+      - NET_RAW
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping || exit 1"]
     user: ${UID}:${GID}
@@ -72,7 +72,7 @@ services:
     cap_drop:
       # Prevent access to raw network traffic
       # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
-      - NET_RAW      
+      - NET_RAW
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE_NAME}", "-U", "${DB_USERNAME}"]
       interval: 10s
@@ -109,7 +109,7 @@ services:
       - ${IMMICH_ML_PORT}:3003
     volumes:
       - ${DSM_APP_SHARE}/cache:/cache:rw
-      
+
       # https://github.com/immich-app/immich/issues/3821
       - ${DSM_APP_SHARE}/matplotlib:/matplotlib:rw
 
@@ -121,7 +121,7 @@ services:
     depends_on:
       immich-db:
         condition: service_started
-    
+
 
   immich-folder-album-creator:
     container_name: immich-folder-album-creator
