@@ -12,7 +12,7 @@ services:
     cap_drop:
       # Prevent access to raw network traffic
       # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
-      - NET_RAW      
+      - NET_RAW
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:2283/api/server/ping"]
       interval: 10s
