@@ -1,8 +1,6 @@
 name: "Tools - Validate Dockerfile Schema"
 
 on:
-#  push:
-#    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -16,8 +14,8 @@ jobs:
       contents: read
       
     steps:
-      - uses: actions/checkout@v5
-      - uses: hadolint/hadolint-action@v3.3.0
+      - uses: actions/checkout@v3
+      - uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
           recursive: true
