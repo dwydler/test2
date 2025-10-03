@@ -3,7 +3,7 @@ services:
     image: ghcr.io/immich-app/immich-server:release
     container_name: Immich-SERVER
     hostname: ${IMMICH_SERVER_HOSTNAME}
-#    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     security_opt:
       # Prevent escalation of privileges after the container is started
       # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
