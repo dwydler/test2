@@ -5,11 +5,10 @@ yaml-files:
   - '*.yml'
 #  - '.yamllint'
 
-rules:
-  empty-lines:
-    level: warning
-
 ignore:
   - ./github/
   - ./data/webapp/.github/
 
+rules:
+  empty-lines:
+    level: warning
