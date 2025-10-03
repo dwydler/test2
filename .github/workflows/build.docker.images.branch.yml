@@ -83,5 +83,3 @@ jobs:
 #          echo "Testing /live endpoint"
 #          #wget -q -O - http://127.0.0.1:5800 | grep live
 #          netcat localhost 5800
-
-#          docker ps
