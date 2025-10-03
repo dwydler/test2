@@ -11,7 +11,8 @@ LABEL org.opencontainers.image.authors="Daniel Wydler"
 #RUN apt-get update && apt-get install -y net-tools host mtr iputils-ping traceroute
 RUN apt-get update && \
     apt-get install -y \
-    net-tools host mtr iputils-ping traceroute locales \
+    net-tools \
+    host mtr iputils-ping traceroute locales \
     && rm -r /var/lib/apt/lists/*
     
 #RUN apt-get install -y locales 
