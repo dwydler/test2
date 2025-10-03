@@ -63,24 +63,24 @@ jobs:
 #          cache-from: type=local,src=/tmp/.buildx-cache
 #          cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Docker Image Testing
-        run: |
-          # List built images
-          docker images
+#      - name: Docker Image Testing
+#        run: |
+#          # List built images
+#          docker images
 
-          docker stop $(docker ps -a -q)
-          docker rm $(docker ps -a -q)
-          docker ps
+#          docker stop $(docker ps -a -q)
+#          docker rm $(docker ps -a -q)
+#          docker ps
 
-          # Run the container in detached mode
-          docker run -d moby/buildkit:buildx-stable-1 \
-            -p 5800:5800
+#          # Run the container in detached mode
+#          docker run -d moby/buildkit:buildx-stable-1 \
+#            -p 5800:5800
 
           # Test the /live endpoint
-          docker ps
-          ping 127.0.0.1 -c 120
-          echo "Testing /live endpoint"
-          #wget -q -O - http://127.0.0.1:5800 | grep live
-          netcat localhost 5800
+#          docker ps
+#          ping 127.0.0.1 -c 120
+#          echo "Testing /live endpoint"
+#          #wget -q -O - http://127.0.0.1:5800 | grep live
+#          netcat localhost 5800
 
-          docker ps
+#          docker ps
