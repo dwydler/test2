@@ -1,7 +1,7 @@
 ---
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:release
+     image: ghcr.io/immich-app/immich-server:release
     container_name: Immich-SERVER
     hostname: ${IMMICH_SERVER_HOSTNAME}
     # user: ${UID}:${GID}
