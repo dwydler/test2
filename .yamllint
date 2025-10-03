@@ -12,3 +12,4 @@ rules:
 ignore:
   - ./github/
   - ./data/webapp/.github/
+  - ./data/webapp/.github/workflows/
