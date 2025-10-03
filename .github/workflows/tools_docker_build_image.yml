@@ -1,4 +1,4 @@
-name: Tools - Docker Build images (PR)
+name: Tools - Docker Build Test (PR)
 
 on:
   pull_request:
