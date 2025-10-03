@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate-yaml:
-    name: Validate YAML schema
+    name: YAML Linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
