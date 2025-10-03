@@ -11,4 +11,4 @@ rules:
 
 ignore:
   - ./github/
-  - ./data/webapp/
+  - ./data/webapp/.github/
