@@ -12,12 +12,6 @@ jobs:
     name: Haskell Linter
     runs-on: ubuntu-latest
 
-#    strategy:
-#      max-parallel: 1
-#      fail-fast: true
-#      matrix:
- #       files: ["Dockerfile", "docker/Dockerfile"]
-        
     permissions:
       contents: read
       
