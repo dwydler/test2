@@ -1,0 +1,154 @@
+---
+services:
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:release
+    container_name: Immich-SERVER
+    hostname: ${IMMICH_SERVER_HOSTNAME}
+    # user: ${UID}:${GID}
+    security_opt:
+      # Prevent escalation of privileges after the container is started
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - no-new-privileges:true
+    cap_drop:
+      # Prevent access to raw network traffic
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - NET_RAW
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2283/api/server/ping"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+    env_file:
+      - .env
+    ports:
+      - ${IMMICH_SERVER_PORT}:2283
+    volumes:
+      - ${DSM_APP_SHARE}/photo:/usr/src/app/upload:rw
+      - /volume3/photo:/volume3/photo:ro
+
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: on-failure:1
+    depends_on:
+      immich-redis:
+        condition: service_healthy
+      immich-db:
+        condition: service_healthy
+
+
+  immich-redis:
+    image: redis
+    container_name: Immich-REDIS
+    hostname: ${REDIS_HOSTNAME}
+    security_opt:
+      # Prevent escalation of privileges after the container is started
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - no-new-privileges:true
+    cap_drop:
+      # Prevent access to raw network traffic
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - NET_RAW
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    user: ${UID}:${GID}
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${DSM_APP_SHARE}/redis:/data:rw
+
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: on-failure:1
+
+
+  immich-db:
+    image: tensorchord/pgvecto-rs:pg16-v0.2.0
+    container_name: Immich-DB
+    hostname: ${DB_HOSTNAME}
+    # Prevent escalation of privileges after the container is started
+    # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      # Prevent access to raw network traffic
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - NET_RAW
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE_NAME}", "-U", "${DB_USERNAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ${DSM_APP_SHARE}/postgresql:/var/lib/postgresql/data:rw
+
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ=${TZ}
+      - POSTGRES_DB=${DB_DATABASE_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS='--data-checksums'
+    restart: on-failure:1
+
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    container_name: Immich-LEARNING
+    hostname: ${IMMICH_ML_HOSTNAME}
+    # user: ${UID}:${GID}
+    security_opt:
+      # Prevent escalation of privileges after the container is started
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - no-new-privileges:true
+    cap_drop:
+      # Prevent access to raw network traffic
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - NET_RAW
+    ports:
+      - ${IMMICH_ML_PORT}:3003
+    volumes:
+      - ${DSM_APP_SHARE}/cache:/cache:rw
+
+      # https://github.com/immich-app/immich/issues/3821
+      - ${DSM_APP_SHARE}/matplotlib:/matplotlib:rw
+
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - MPLCONFIGDIR=${IMMICH_ML_MPLCONFIGDIR}
+    restart: on-failure:1
+    depends_on:
+      immich-db:
+        condition: service_started
+
+
+  immich-folder-album-creator:
+    container_name: immich-folder-album-creator
+    image: salvoxia/immich-folder-album-creator:latest
+    security_opt:
+      # Prevent escalation of privileges after the container is started
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - no-new-privileges:true
+    cap_drop:
+      # Prevent access to raw network traffic
+      # https://immich.app/docs/FAQ/#how-can-i-run-immich-as-a-non-root-user
+      - NET_RAW
+    restart: unless-stopped
+    environment:
+      API_URL: http://${IMMICH_SERVER_HOSTNAME}:${IMMICH_SERVER_PORT}/api
+      API_KEY: "mbAkTGuSHGTvyC2jaHhmseNkitJlKuRraRyXniBK0"
+      ROOT_PATH: /volume3/photo
+      ALBUM_LEVELS: "1,3"
+      CRON_EXPRESSION: "*/5 * * * *"
+      RUN_IMMEDIATELY: true
+      TZ: ${TZ}
+    depends_on:
+      immich-server:
+        condition: service_healthy
+
+
+networks:
+  default:
+    name: immich-app_default
+    external: true
