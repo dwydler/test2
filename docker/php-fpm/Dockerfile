@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.authors="Daniel Wydler"
 RUN apt-get update
 
 # Install package(s)
-RUN apt install -y net-tools host mtr iputils-ping traceroute
+RUN apt-get install -y net-tools host mtr iputils-ping traceroute
 RUN apt install -y locales 
 RUN docker-php-ext-install gettext
 
