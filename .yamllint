@@ -8,7 +8,7 @@ yaml-files:
   - '*.yml.example'
 
 ignore: |
-  ./data/webapp/.github/workflows/codeql_branch_customize.yml
+  ./data/webapp/.github/workflows/
 
 rules:
   empty-lines:
