@@ -4,7 +4,9 @@ on:
   pull_request:
     branches: [ "master" ]
     types: [ labeled ]
-
+    paths:
+      - Dockerfile
+      
 permissions:
   contents: read
 
