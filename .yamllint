@@ -7,10 +7,6 @@ yaml-files:
   - '.yamllint'
   - '*.yml.example'
 
-ignore: |
- # ./data/webapp/.github/
-
-
 rules:
   empty-lines:
     level: warning
