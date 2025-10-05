@@ -1,4 +1,6 @@
+---
 name: Build & publish docker images (release)
+
 on:
   release:
     types:
