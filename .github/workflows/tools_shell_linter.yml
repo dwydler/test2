@@ -1,7 +1,7 @@
 ---
 name: "Tools - Validate Shell Scripts"
 
-on:
+"on":
   pull_request:
     branches:
       - "master"
