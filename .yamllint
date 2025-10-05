@@ -1,14 +1,14 @@
 ---
 extends: default
 
+ignore: |
+  ./data/webapp/
+
 yaml-files:
   - '*.yaml'
   - '*.yml'
   - '.yamllint'
   - '*.yml.example'
-
-ignore: |
-  ./data/webapp/
 
 rules:
   empty-lines:
