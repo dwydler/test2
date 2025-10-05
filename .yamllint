@@ -7,8 +7,8 @@ yaml-files:
   - '.yamllint'
   - '*.yml.example'
 
-ignore:
-  - './data/webapp/.github/workflows/codeql_branch_customize.yml'
+ignore: |
+  ./data/webapp/.github/workflows/codeql_branch_customize.yml
 
 rules:
   empty-lines:
