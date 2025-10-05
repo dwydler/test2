@@ -2,7 +2,8 @@
 extends: default
 
 ignore:
-  - './data/webapp/'
+  # Ignore files from webapp which are included over git submodule
+  - 'data/webapp/'
 
 yaml-files:
   - '*.yaml'
