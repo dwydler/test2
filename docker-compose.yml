@@ -54,6 +54,7 @@ services:
     networks:
       frontend:
 
+
 networks:
   frontend:
     enable_ipv6: true
