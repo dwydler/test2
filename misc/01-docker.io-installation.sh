@@ -2,7 +2,6 @@
 
 # DEBIAN_FRONTEND=noninteractive
 # Suppress service restart prompt
-
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
