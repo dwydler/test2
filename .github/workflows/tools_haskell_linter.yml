@@ -1,8 +1,10 @@
+---
 name: "Tools - Validate Dockerfile Schema"
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - "master"
 
 
 jobs:
@@ -17,6 +19,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: Dockerfile
-          recursive: true
+          dockerfile: "Dockerfile"
+          recursive: "true"
           ignore: "DL3008,DL3015,DL3018"
