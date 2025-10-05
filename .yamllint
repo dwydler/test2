@@ -8,7 +8,7 @@ yaml-files:
 
 ignore: |
 #  .github/
-  ./data/webapp/.github/workflows/
+
 
 rules:
   empty-lines:
