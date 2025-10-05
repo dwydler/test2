@@ -1,15 +1,16 @@
+---
 name: "Tools - Validate Shell Scripts"
 
-on:
+"on":
   pull_request:
-    branches: 
+    branches:
       - "master"
     paths:
       - "**.sh"
 
 permissions:
   contents: read
-  
+
 jobs:
   validate-shellscripts-schema:
     name: Shell Linter
@@ -17,10 +18,10 @@ jobs:
 
     permissions:
       contents: read
-      
+
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
 
       - name: Validate shell scripts
         uses: Azbagheri/shell-linter@latest

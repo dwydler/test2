@@ -1,3 +1,4 @@
+---
 version: "3.9"
 
 services:
@@ -22,9 +23,8 @@ services:
     networks:
       frontend:
 
-
   php-fpm:
-    image:  "wydler/lookingglass-php:${DOCKER_HUB_CONTAINER_TAG}"
+    image: "wydler/lookingglass-php:${DOCKER_HUB_CONTAINER_TAG}"
     container_name: "lookingglass_php-fpm"
     restart: "unless-stopped"
     user: "33:33"
@@ -38,7 +38,6 @@ services:
       - "./data/webapp:/var/www/html:rw"
     networks:
       frontend:
-
 
   iperf:
     image: "wydler/lookingglass-iperf:${DOCKER_HUB_CONTAINER_TAG}"
@@ -61,4 +60,3 @@ networks:
     ipam:
       config:
         - subnet: fd00:cafe:face:feed::/64
-
