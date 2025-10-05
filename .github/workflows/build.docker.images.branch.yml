@@ -1,7 +1,7 @@
 ---
 name: "Build & publish docker images (branch)"
 
-on:
+"on":
   workflow_dispatch:
 
 permissions:
