@@ -5,8 +5,8 @@ name: Tools - Docker Build Test
   pull_request:
     branches:
       - "master"
-    types:
-      - "labeled"
+    #types:
+      #- "labeled"
     paths:
       - '**Dockerfile'
 
@@ -16,7 +16,7 @@ permissions:
 jobs:
   docker-build-image:
     #
-    if: github.event.label.name == 'CI'
+    #if: github.event.label.name == 'CI'
 
     name: Docker Build Images
     runs-on: ubuntu-latest
