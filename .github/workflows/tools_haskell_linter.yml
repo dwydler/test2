@@ -7,6 +7,9 @@ on:
     paths:
       - '**Dockerfile'
 
+permissions:
+  contents: read
+  
 jobs:
   validate-dockerfile-schema:
     name: Haskell Linter
