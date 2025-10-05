@@ -5,7 +5,7 @@ FROM php:8.4.13-fpm
 LABEL org.opencontainers.image.authors="Daniel Wydler"
 
 # Package lists reread and updated
-RUN apt update
+RUN apt-get update
 
 # Install package(s)
 RUN apt install -y net-tools host mtr iputils-ping traceroute
