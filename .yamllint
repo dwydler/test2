@@ -7,6 +7,9 @@ yaml-files:
   - '.yamllint'
   - '*.yml.example'
 
+ignore:
+  - ./data/webapp/*
+
 rules:
   empty-lines:
     level: warning
