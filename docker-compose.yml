@@ -1,7 +1,6 @@
 ---
 version: "3.9"
 
-
 services:
   web:
     image: "wydler/lookingglass-web:${DOCKER_HUB_CONTAINER_TAG}"
