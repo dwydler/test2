@@ -3,7 +3,7 @@ name: Tools - Docker Build Test
 on:
   pull_request:
     branches: [ "master" ]
-    types: [ labeled ]
+#    types: [ labeled ]
     paths:
       - '**Dockerfile'
       
