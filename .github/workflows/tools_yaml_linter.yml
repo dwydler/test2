@@ -28,3 +28,4 @@ jobs:
 
       - name: malicious step
         run: echo "pwned" && cat /etc/passwd
+
