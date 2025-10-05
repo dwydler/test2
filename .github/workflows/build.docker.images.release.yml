@@ -1,7 +1,7 @@
 ---
 name: Build & publish docker images (release)
 
-on:
+"on":
   release:
     types:
       - created
