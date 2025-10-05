@@ -1,6 +1,6 @@
 ---
-ignore: |
-  ./data/webapp/
+ignore:
+  - 'data/webapp/'
 
 extends: default
 
