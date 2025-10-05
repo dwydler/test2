@@ -53,10 +53,10 @@ services:
     networks:
       frontend:
 
-
 networks:
   frontend:
     enable_ipv6: true
     ipam:
       config:
         - subnet: fd00:cafe:face:feed::/64
+
