@@ -5,13 +5,13 @@ FROM nginx:1.29.1
 LABEL org.opencontainers.image.authors="Daniel Wydler"
 
 # Package lists reread and updated 
-RUN apt update
+RUN apt-get update
 
 # Install package(s)
-RUN apt install -y sqlite3
+RUN apt-get install -y sqlite3
 
 # Deletes the already downloaded installation files from the package cache
-RUN apt clean
+RUN apt-get clean
 
 # Remove the package lists
 RUN rm -r /var/lib/apt/lists/*
