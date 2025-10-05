@@ -1,7 +1,6 @@
 ---
 version: "3.9"
 
-
 services:
   web:
     image: "wydler/lookingglass-web:${DOCKER_HUB_CONTAINER_TAG}"
@@ -40,6 +39,7 @@ services:
       - "./data/webapp:/var/www/html:rw"
     networks:
       frontend:
+
 
   iperf:
     image: "wydler/lookingglass-iperf:${DOCKER_HUB_CONTAINER_TAG}"
