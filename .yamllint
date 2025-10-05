@@ -7,7 +7,7 @@ yaml-files:
   - '*.yml.example'
 
 ignore: |
-#  .github/
+  ./data/webapp/.github/
 
 
 rules:
