@@ -13,7 +13,7 @@ RUN apt-get install -y locales
 RUN docker-php-ext-install gettext
 
 # Deletes the already downloaded installation files from the package cache
-RUN apt clean
+RUN apt-get clean
 
 # Remove the package lists
 RUN rm -r /var/lib/apt/lists/*
