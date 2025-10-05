@@ -3,6 +3,7 @@ name: "Tools - Validate Dockerfile Schema"
 on:
   pull_request:
     branches: [ "master" ]
+    types: [ labeled ]    
     paths:
       - '**Dockerfile'
 
