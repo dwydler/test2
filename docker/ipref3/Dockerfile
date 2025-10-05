@@ -26,3 +26,4 @@ HEALTHCHECK --timeout=3s \
 
 # iperf3 -s = run in Server mode
 CMD ["-s"]
+
