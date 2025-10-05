@@ -8,7 +8,7 @@ yaml-files:
   - '*.yml.example'
 
 ignore:
-  - ./data/webapp/*
+  - ./data/webapp/.github/workflows/*.yml
 
 rules:
   empty-lines:
