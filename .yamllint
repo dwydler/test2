@@ -10,9 +10,9 @@ yaml-files:
 ignore: |
 #  .github/
 
+
 rules:
   empty-lines:
     level: warning
   line-length:
-    max: 92
-
+    max: 235
