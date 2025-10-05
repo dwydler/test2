@@ -2,7 +2,7 @@
 extends: default
 
 ignore:
-  - 'data/webapp/'
+  - './data/webapp/'
 
 yaml-files:
   - '*.yaml'
