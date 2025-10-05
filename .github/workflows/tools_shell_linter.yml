@@ -1,4 +1,4 @@
-name: "Tools - Validate Dockerfile Schema"
+name: "Tools - Validate Shell Scripts"
 
 on:
   pull_request:
