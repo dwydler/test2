@@ -8,6 +8,7 @@ LABEL org.opencontainers.image.authors="Daniel Wydler"
 RUN apk add --no-cache iperf3 \
   && adduser -S iperf
 
+#
 USER iperf
     
 # Expose the default iperf3 server ports
