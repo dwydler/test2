@@ -1,4 +1,1 @@
-[submodule "data/webapp"]
-	path = data/webapp
-	url = https://github.com/dwydler/LookingGlass.git
-	branch = customize
+

@@ -7,7 +7,7 @@ yaml-files:
   - '*.yml.example'
 
 ignore: |
-  .github/
+#  .github/
 
 rules:
   empty-lines:
