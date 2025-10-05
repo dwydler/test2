@@ -24,6 +24,7 @@ services:
     networks:
       frontend:
 
+
   php-fpm:
     image: "wydler/lookingglass-php:${DOCKER_HUB_CONTAINER_TAG}"
     container_name: "lookingglass_php-fpm"
