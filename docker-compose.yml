@@ -40,7 +40,6 @@ services:
     networks:
       frontend:
 
-
   iperf:
     image: "wydler/lookingglass-iperf:${DOCKER_HUB_CONTAINER_TAG}"
     container_name: "lookingglass_iperf"
